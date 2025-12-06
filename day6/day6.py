@@ -16,6 +16,30 @@ def parse_input(example=True):
     return output
 
 
+def parse_input_part2(example=True):
+    filename = 'example_input.txt' if example else 'input.txt'
+    lines = ''
+
+    with open(filename) as file:
+        lines = file.readlines()
+
+    lines = list(zip(*lines))
+    problems = []
+    problems.append([lines[0][-1]])  # Start the first problem
+    for i, line in enumerate(lines):
+        if all([x == "\n" or x == "\r\n" for x in line]):
+            break
+
+        if all([x == " " for x in line]):
+            problems.append([lines[i + 1][-1]])
+            continue
+
+        problems[-1].append(int(''.join(filter(lambda x: x !=
+                            " ", line[:-1]))))
+
+    return problems
+
+
 def product(ns):
     if len(ns) <= 0:
         return 0
@@ -43,8 +67,17 @@ def solve_part1(example=True):
 
 
 def solve_part2(example=True):
-    input = parse_input(example)
-    pass
+    problems = parse_input_part2(example)
+
+    result = 0
+
+    for problem in problems:
+        if problem[0] == "+":
+            result += sum(problem[1:])
+        else:
+            result += product(problem[1:])
+
+    return result
 
 
 if __name__ == '__main__':
