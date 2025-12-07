@@ -5,6 +5,9 @@ def parse_input(example=True):
     with open(filename) as file:
         lines = file.readlines()
 
+    for i in range(len(lines)):
+        lines[i] = lines[i].strip()
+
     return lines
 
 
@@ -35,8 +38,32 @@ def solve_part1(example=True):
 
 
 def solve_part2(example=True):
-    input = parse_input(example)
-    pass
+    input_lines = parse_input(example)
+    beam_indices = {}
+    for i in range(len(input_lines[0])):
+        beam_indices[i] = 0
+
+    beam_indices[input_lines[0].index('S')] = 1
+    timelines = 1
+
+    for line in input_lines[1:]:
+        for beam, amount in beam_indices.copy().items():
+            if line[beam] == '^' and amount != 0:
+                beam_indices[beam] = 0
+
+                if (beam - 1) in beam_indices:
+                    beam_indices[beam - 1] += amount
+                else:
+                    beam_indices[beam - 1] = amount
+
+                if (beam + 1) in beam_indices:
+                    beam_indices[beam + 1] += amount
+                else:
+                    beam_indices[beam + 1] = amount
+
+                timelines += amount
+
+    return timelines
 
 
 if __name__ == '__main__':
