@@ -35,12 +35,14 @@ if __name__ == '__main__':
     print(f'Creating file: day{day}/solver.py')
 
     dirpath = os.path.join(os.getcwd(), 'day8')
-
     if not os.path.exists(dirpath):
         os.makedirs(f'./day{day}')
-
     with open(f'./day{day}/solver.py', 'w+') as file:
         file.write(script_content)
+
+    print(f'Creating file: day{day}/__init__.py')
+    with open(f'./day{day}/__init__.py', 'w+'):
+        pass
 
     if args.tests:
         print(f'Creating test file: tests/test_day{day}.py')
