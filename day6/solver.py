@@ -1,5 +1,5 @@
 def parse_input(example=True):
-    filename = 'example_input.txt' if example else 'input.txt'
+    filename = 'day6/example_input.txt' if example else 'day6/input.txt'
     lines = ''
 
     with open(filename) as file:
@@ -17,7 +17,7 @@ def parse_input(example=True):
 
 
 def parse_input_part2(example=True):
-    filename = 'example_input.txt' if example else 'input.txt'
+    filename = 'day6/example_input.txt' if example else 'day6/input.txt'
     lines = ''
 
     with open(filename) as file:

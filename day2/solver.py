@@ -11,9 +11,9 @@ def parse_input(example=True) -> [(int, int)]:
     content = ''
 
     if example:
-        content = readfile('example_input.txt')
+        content = readfile('day2/example_input.txt')
     else:
-        content = readfile('input.txt')
+        content = readfile('day2/input.txt')
 
     raw_ranges = content.split(',')
     # Prefer to use comprehensions over map(), it's just cleaner
@@ -58,11 +58,13 @@ def get_repeated_ids(id_ranges_list):
     return repeated_ids
 
 
-def solve_part1(ranges):
+def solve_part1(example=True):
+    ranges = parse_input(example)
     return sum(get_invalid_ids(ranges))
 
 
-def solve_part2(ranges):
+def solve_part2(example=True):
+    ranges = parse_input(example)
     return sum(get_repeated_ids(ranges))
 
 
