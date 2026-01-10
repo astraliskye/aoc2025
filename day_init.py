@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     print(f'Creating file: day{day}/solver.py')
 
-    dirpath = os.path.join(os.getcwd(), 'day8')
+    dirpath = os.path.join(os.getcwd(), f'day{day}')
     if not os.path.exists(dirpath):
         os.makedirs(f'./day{day}')
     with open(f'./day{day}/solver.py', 'w+') as file:
